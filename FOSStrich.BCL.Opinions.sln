@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOSStrich.BCL.Opinions", "FOSStrich.BCL.Opinions\FOSStrich.BCL.Opinions.csproj", "{4021FC1B-C364-4FB1-87F1-0CF974F6016C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOSStrich.BCL.Opinions.Test", "FOSStrich.BCL.Opinions.Test\FOSStrich.BCL.Opinions.Test.csproj", "{7B38CB8F-5832-419B-AB67-9E7E1EC52960}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4021FC1B-C364-4FB1-87F1-0CF974F6016C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4021FC1B-C364-4FB1-87F1-0CF974F6016C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4021FC1B-C364-4FB1-87F1-0CF974F6016C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4021FC1B-C364-4FB1-87F1-0CF974F6016C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B38CB8F-5832-419B-AB67-9E7E1EC52960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B38CB8F-5832-419B-AB67-9E7E1EC52960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B38CB8F-5832-419B-AB67-9E7E1EC52960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B38CB8F-5832-419B-AB67-9E7E1EC52960}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8FF9421-EB4F-46E2-A596-8B4D35AD96BA}
+	EndGlobalSection
+EndGlobal
