@@ -19,7 +19,7 @@ jobs:
           
         - run: dotnet build --no-restore --configuration Release
           
-        - run: dotnet test --no-build --configuration Release --verbosity normal
+        - run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
   
         - run: dotnet pack --no-build --configuration Release FOSStrich.BCL.Opinions\FOSStrich.BCL.Opinions.csproj
   
