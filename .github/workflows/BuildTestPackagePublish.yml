@@ -24,7 +24,3 @@ jobs:
         - run: dotnet pack --no-build --configuration Release FOSStrich.BCL.Opinions\FOSStrich.BCL.Opinions.csproj
   
         - run: dotnet nuget push --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_APIKEY}} "FOSStrich.BCL.Opinions\bin\Release\*.nupkg"
-  
-        - uses: codecov/codecov-action@v3
-          env:
-              CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

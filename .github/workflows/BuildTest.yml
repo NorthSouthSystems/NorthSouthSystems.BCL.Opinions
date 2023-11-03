@@ -20,7 +20,3 @@ jobs:
         - run: dotnet build --no-restore --configuration Release
           
         - run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
-  
-        - uses: codecov/codecov-action@v3
-          env:
-              CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
