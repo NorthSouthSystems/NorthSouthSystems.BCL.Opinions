@@ -15,6 +15,8 @@ jobs:
           with:
               dotnet-version: 7.0.x
 
+        - run: dotnet tool install dotnet-coverage
+
         - uses: actions/setup-java@v3 # Sonar.
           with:
               java-version: 17
@@ -46,7 +48,7 @@ jobs:
               SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           shell: powershell
           run: |
-              .\.sonar\scanner\dotnet-sonarscanner begin /k:"FOSStrich_FOSStrich.BCL.Opinions" /o:"fosstrich" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+              .\.sonar\scanner\dotnet-sonarscanner begin /k:"FOSStrich_FOSStrich.BCL.Opinions" /o:"fosstrich" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
               dotnet build --no-restore --configuration Release
-              dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+              dotnet-coverage collect "dotnet test --no-build --configuration Release --verbosity normal" -f xml -o "coverage.xml"
               .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
