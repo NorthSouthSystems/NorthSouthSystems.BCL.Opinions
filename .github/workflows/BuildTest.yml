@@ -15,7 +15,7 @@ jobs:
           with:
               dotnet-version: 7.0.x
 
-        - run: dotnet tool install dotnet-coverage
+        - run: dotnet tool install --global dotnet-coverage
 
         - uses: actions/setup-java@v3 # Sonar.
           with:
