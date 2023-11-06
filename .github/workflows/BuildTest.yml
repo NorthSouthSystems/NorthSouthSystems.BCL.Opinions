@@ -9,14 +9,44 @@ jobs:
         steps:
         - uses: actions/checkout@v3
           with:
-              fetch-depth: 0 # Avoid shallow clone which breaks Nerdbank.GitVersioning.
+              fetch-depth: 0 # Nerdbank.GitVersioning requires deep clone. Deep clone improves Sonar.
         
         - uses: actions/setup-dotnet@v3
           with:
               dotnet-version: 7.0.x
+
+        - uses: actions/setup-java@v3 # Sonar.
+          with:
+              java-version: 17
+              distribution: 'zulu'
+
+        - uses: actions/cache@v3 # Sonar packages cache.
+          with:
+              path: ~\sonar\cache
+              key: ${{ runner.os }}-sonar
+              restore-keys: ${{ runner.os }}-sonar
+
+        - id: cache-sonar-scanner # Sonar scanner cache.
+          uses: actions/cache@v3
+          with:
+              path: .\.sonar\scanner
+              key: ${{ runner.os }}-sonar-scanner
+              restore-keys: ${{ runner.os }}-sonar-scanner
+
+        - if: steps.cache-sonar-scanner.outputs.cache-hit != 'true' # Sonar scanner install.
+          shell: powershell
+          run: |
+              New-Item -Path .\.sonar\scanner -ItemType Directory
+              dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
               
         - run: dotnet restore
-          
-        - run: dotnet build --no-restore --configuration Release
-          
-        - run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+  
+        - env:
+              #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+              SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          shell: powershell
+          run: |
+              .\.sonar\scanner\dotnet-sonarscanner begin /k:"FOSStrich_FOSStrich.BCL.Opinions" /o:"fosstrich" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+              dotnet build --no-restore --configuration Release
+              dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+              .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
