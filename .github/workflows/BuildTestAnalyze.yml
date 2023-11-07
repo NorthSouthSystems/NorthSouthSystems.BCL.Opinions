@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build, Test, and Analyze
 
 on: [push, workflow_dispatch]
 
@@ -31,7 +31,18 @@ jobs:
               SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           shell: powershell
           run: |
-              dotnet-sonarscanner begin /k:"FOSStrich_FOSStrich.BCL.Opinions" /o:"fosstrich" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+              dotnet-sonarscanner begin `
+                  /o:"fosstrich" `
+                  /k:"FOSStrich_FOSStrich.BCL.Opinions" `
+                  /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml `
+                  /d:sonar.dotnet.excludeTestProjects=true `
+                  /d:sonar.host.url="https://sonarcloud.io" `
+                  /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
               dotnet build --no-restore --configuration Release
-              dotnet-coverage collect "dotnet test --no-build --configuration Release --verbosity normal" -f xml -o "coverage.xml"
+
+              dotnet-coverage collect `
+                  "dotnet test --no-build --configuration Release --verbosity normal" `
+                  -f xml -o "coverage.xml"
+
               dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
