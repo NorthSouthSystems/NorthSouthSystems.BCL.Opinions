@@ -22,24 +22,7 @@ jobs:
               java-version: 17
               distribution: 'zulu'
 
-        - uses: actions/cache@v3 # Sonar packages cache.
-          with:
-              path: ~\sonar\cache
-              key: ${{ runner.os }}-sonar
-              restore-keys: ${{ runner.os }}-sonar
-
-        - id: cache-sonar-scanner # Sonar scanner cache.
-          uses: actions/cache@v3
-          with:
-              path: .\.sonar\scanner
-              key: ${{ runner.os }}-sonar-scanner
-              restore-keys: ${{ runner.os }}-sonar-scanner
-
-        - if: steps.cache-sonar-scanner.outputs.cache-hit != 'true' # Sonar scanner install.
-          shell: powershell
-          run: |
-              New-Item -Path .\.sonar\scanner -ItemType Directory
-              dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+        - run: dotnet tool install --global dotnet-sonarscanner
               
         - run: dotnet restore
   
@@ -48,7 +31,7 @@ jobs:
               SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           shell: powershell
           run: |
-              .\.sonar\scanner\dotnet-sonarscanner begin /k:"FOSStrich_FOSStrich.BCL.Opinions" /o:"fosstrich" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+              dotnet-sonarscanner begin /k:"FOSStrich_FOSStrich.BCL.Opinions" /o:"fosstrich" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
               dotnet build --no-restore --configuration Release
               dotnet-coverage collect "dotnet test --no-build --configuration Release --verbosity normal" -f xml -o "coverage.xml"
-              .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+              dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
