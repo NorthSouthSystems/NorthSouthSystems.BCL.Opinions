@@ -3,7 +3,7 @@ name: Build, Test, and Analyze
 on: [push, workflow_dispatch]
 
 jobs:
-    build-test:
+    build-test-analyze:
         runs-on: windows-latest
 
         steps:
@@ -16,6 +16,8 @@ jobs:
               dotnet-version: 7.0.x
 
         - run: dotnet tool install --global dotnet-coverage
+  
+        - run: dotnet tool install --global nbgv
 
         - uses: actions/setup-java@v3 # Sonar.
           with:
@@ -31,9 +33,12 @@ jobs:
               SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           shell: powershell
           run: |
+              $version = & nbgv get-version --variable NuGetPackageVersion
+
               dotnet-sonarscanner begin `
                   /o:"fosstrich" `
                   /k:"FOSStrich_FOSStrich.BCL.Opinions" `
+                  /v:$version `
                   /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml `
                   /d:sonar.dotnet.excludeTestProjects=true `
                   /d:sonar.host.url="https://sonarcloud.io" `
