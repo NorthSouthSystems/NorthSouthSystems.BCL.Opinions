@@ -1,4 +1,4 @@
-﻿namespace FOSStrich.IO;
+﻿namespace NorthSouthSystems.IO;
 
 using System.IO;
 using System.Runtime.CompilerServices;

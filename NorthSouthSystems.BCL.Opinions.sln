@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOSStrich.BCL.Opinions", "FOSStrich.BCL.Opinions\FOSStrich.BCL.Opinions.csproj", "{4021FC1B-C364-4FB1-87F1-0CF974F6016C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthSouthSystems.BCL.Opinions", "NorthSouthSystems.BCL.Opinions\NorthSouthSystems.BCL.Opinions.csproj", "{4021FC1B-C364-4FB1-87F1-0CF974F6016C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FOSStrich.BCL.Opinions.Test", "FOSStrich.BCL.Opinions.Test\FOSStrich.BCL.Opinions.Test.csproj", "{7B38CB8F-5832-419B-AB67-9E7E1EC52960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthSouthSystems.BCL.Opinions.Test", "NorthSouthSystems.BCL.Opinions.Test\NorthSouthSystems.BCL.Opinions.Test.csproj", "{7B38CB8F-5832-419B-AB67-9E7E1EC52960}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

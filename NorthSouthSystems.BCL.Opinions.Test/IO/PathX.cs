@@ -1,4 +1,4 @@
-﻿namespace FOSStrich.IO;
+﻿namespace NorthSouthSystems.IO;
 
 public class PathXTests
 {

@@ -1,4 +1,4 @@
-﻿namespace FOSStrich.Xml.Linq;
+﻿namespace NorthSouthSystems.Xml.Linq;
 
 using System.Xml;
 using System.Xml.Linq;

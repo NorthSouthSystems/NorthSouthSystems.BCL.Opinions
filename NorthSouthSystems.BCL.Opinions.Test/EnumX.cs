@@ -1,4 +1,4 @@
-﻿namespace FOSStrich;
+﻿namespace NorthSouthSystems;
 
 public class EnumXTests
 {
