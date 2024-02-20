@@ -23,6 +23,11 @@ public static class XElementSimpleStreamer
         if (elementName == null)
             throw new ArgumentNullException(nameof(elementName));
 
+        return StreamIterator(reader, elementName);
+    }
+
+    private static IEnumerable<XElement> StreamIterator(XmlReader reader, XName elementName)
+    {
         reader.MoveToContent();
 
         bool yielded;
