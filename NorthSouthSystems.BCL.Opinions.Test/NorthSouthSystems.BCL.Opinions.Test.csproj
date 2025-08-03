@@ -3,7 +3,7 @@
     <Sdk Name="NorthSouthSystems.NET.Sdk" Version="2.3.4" />
 
     <PropertyGroup>
-        <TargetFrameworks>net48;net8.0</TargetFrameworks>
+        <TargetFrameworks>net48;net9.0</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
