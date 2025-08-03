@@ -1,15 +1,30 @@
 ﻿namespace NorthSouthSystems.IO;
 
+using System.Runtime.InteropServices;
+
 public class PathXTests
 {
+    private static bool IsWindows => RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
     [Fact]
     public void Basic()
     {
-        PathX.GetDirectoryNameOfCallerFilePath(@"C:\Foo\A.txt").Should().Be(@"C:\Foo");
-        PathX.GetDirectoryNameOfCallerFilePath(@"C:\Foo\Bar\A.txt").Should().Be(@"C:\Foo\Bar");
+        if (IsWindows)
+        {
+            PathX.GetDirectoryNameOfCallerFilePath(@"C:\Foo\A.txt").Should().Be(@"C:\Foo");
+            PathX.GetDirectoryNameOfCallerFilePath(@"C:\Foo\Bar\A.txt").Should().Be(@"C:\Foo\Bar");
 
-        PathX.GetFullPathRelativeToCallerFilePath("B.txt", @"C:\Foo\A.txt").Should().Be(@"C:\Foo\B.txt");
-        PathX.GetFullPathRelativeToCallerFilePath(@"Bar\B.txt", @"C:\Foo\A.txt").Should().Be(@"C:\Foo\Bar\B.txt");
+            PathX.GetFullPathRelativeToCallerFilePath("B.txt", @"C:\Foo\A.txt").Should().Be(@"C:\Foo\B.txt");
+            PathX.GetFullPathRelativeToCallerFilePath(@"Bar\B.txt", @"C:\Foo\A.txt").Should().Be(@"C:\Foo\Bar\B.txt");
+        }
+        else
+        {
+            PathX.GetDirectoryNameOfCallerFilePath("/Foo/A.txt").Should().Be("/Foo");
+            PathX.GetDirectoryNameOfCallerFilePath("/Foo/Bar/A.txt").Should().Be("/Foo/Bar");
+
+            PathX.GetFullPathRelativeToCallerFilePath("B.txt", "/Foo/A.txt").Should().Be("/Foo/B.txt");
+            PathX.GetFullPathRelativeToCallerFilePath("Bar/B.txt", "/Foo/A.txt").Should().Be("/Foo/Bar/B.txt");
+        }
     }
 
     [Fact]
@@ -26,7 +41,7 @@ public class PathXTests
         act = () => PathX.GetFullPathRelativeToCallerFilePath(null);
         act.Should().ThrowExactly<ArgumentNullException>();
 
-        act = () => PathX.GetFullPathRelativeToCallerFilePath(@"C:\Rooted.txt");
+        act = () => PathX.GetFullPathRelativeToCallerFilePath(IsWindows ? @"C:\Rooted.txt" : "/Rooted.txt");
         act.Should().ThrowExactly<ArgumentOutOfRangeException>();
     }
 }
