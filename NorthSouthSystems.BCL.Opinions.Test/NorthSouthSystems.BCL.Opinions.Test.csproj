@@ -2,8 +2,12 @@
 
     <Sdk Name="NorthSouthSystems.NET.Sdk" Version="2.3.4" />
 
-    <PropertyGroup>
+    <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
         <TargetFrameworks>net48;net9.0</TargetFrameworks>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(OS)' != 'Windows_NT' ">
+        <TargetFramework>net9.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
