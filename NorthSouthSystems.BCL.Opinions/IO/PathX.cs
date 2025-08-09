@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 public static class PathX
 {
-    public static string GetDirectoryNameOfCallerFilePath([CallerFilePath] string callerFilePath = null)
+    public static string GetDirectoryNameOfCallerFilePath([CallerFilePath] string? callerFilePath = null)
     {
         if (callerFilePath == null)
             throw new ArgumentNullException(nameof(callerFilePath));
@@ -13,10 +13,15 @@ public static class PathX
         if (!Path.IsPathRooted(callerFilePath))
             throw new ArgumentOutOfRangeException(nameof(callerFilePath));
 
-        return Path.GetDirectoryName(callerFilePath);
+        string? directory = Path.GetDirectoryName(callerFilePath);
+
+        if (string.IsNullOrEmpty(directory))
+            throw new ArgumentOutOfRangeException(nameof(callerFilePath));
+
+        return directory;
     }
 
-    public static string GetFullPathRelativeToCallerFilePath(string relativePath, [CallerFilePath] string callerFilePath = null)
+    public static string GetFullPathRelativeToCallerFilePath(string relativePath, [CallerFilePath] string? callerFilePath = null)
     {
         if (relativePath == null)
             throw new ArgumentNullException(nameof(relativePath));

@@ -43,5 +43,22 @@ public class PathXTests
 
         act = () => PathX.GetFullPathRelativeToCallerFilePath(IsWindows ? @"C:\Rooted.txt" : "/Rooted.txt");
         act.Should().ThrowExactly<ArgumentOutOfRangeException>();
+
+        if (IsWindows)
+        {
+            act = () => PathX.GetDirectoryNameOfCallerFilePath(@"C:\");
+            act.Should().ThrowExactly<ArgumentOutOfRangeException>();
+
+            act = () => PathX.GetFullPathRelativeToCallerFilePath("B.txt", @"C:\");
+            act.Should().ThrowExactly<ArgumentOutOfRangeException>();
+        }
+        else
+        {
+            act = () => PathX.GetDirectoryNameOfCallerFilePath("/");
+            act.Should().ThrowExactly<ArgumentOutOfRangeException>();
+
+            act = () => PathX.GetFullPathRelativeToCallerFilePath("B.txt", "/");
+            act.Should().ThrowExactly<ArgumentOutOfRangeException>();
+        }
     }
 }
