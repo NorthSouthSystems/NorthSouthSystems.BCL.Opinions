@@ -35,8 +35,11 @@ public class MathXTests
     [InlineData(-0.375, 0.25, -0.25)]
     [InlineData(-0.375, 0.5, 0)]
     [InlineData(-0.625, 0.5, -0.5)]
-    public void CeilingToFactor(decimal value, decimal factor, decimal expectedValue) =>
+    public void CeilingToFactor(decimal value, decimal factor, decimal expectedValue)
+    {
         MathX.CeilingToFactor(value, factor).Should().Be(expectedValue);
+        MathX.CeilingToFactor((double)value, (double)factor).Should().Be((double)expectedValue);
+    }
 
     [Theory]
     // Zero
@@ -71,8 +74,11 @@ public class MathXTests
     [InlineData(-0.375, 0.25, -0.5)]
     [InlineData(-0.375, 0.5, -0.5)]
     [InlineData(-0.625, 0.5, -1)]
-    public void FloorToFactor(decimal value, decimal factor, decimal expectedValue) =>
+    public void FloorToFactor(decimal value, decimal factor, decimal expectedValue)
+    {
         MathX.FloorToFactor(value, factor).Should().Be(expectedValue);
+        MathX.FloorToFactor((double)value, (double)factor).Should().Be((double)expectedValue);
+    }
 
     [Theory]
     // Zero
@@ -117,6 +123,9 @@ public class MathXTests
     [InlineData(-0.125, 0.25, -0.25)]
     [InlineData(-0.375, 0.25, -0.5)]
     [InlineData(-0.375, 0.5, -0.5)]
-    public void RoundToFactor(decimal value, decimal factor, decimal expectedValue, MidpointRounding mode = MidpointRounding.AwayFromZero) =>
+    public void RoundToFactor(decimal value, decimal factor, decimal expectedValue, MidpointRounding mode = MidpointRounding.AwayFromZero)
+    {
         MathX.RoundToFactor(value, factor, mode).Should().Be(expectedValue);
+        MathX.RoundToFactor((double)value, (double)factor, mode).Should().Be((double)expectedValue);
+    }
 }

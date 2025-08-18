@@ -2,21 +2,21 @@
 
 public static partial class MathX
 {
-    public static decimal CeilingToFactor(this decimal value, decimal factor)
+    public static double CeilingToFactor(this double value, double factor)
     {
         ThrowIfFactorOutOfRange(factor);
 
         return Math.Ceiling(value / factor) * factor;
     }
 
-    public static decimal FloorToFactor(this decimal value, decimal factor)
+    public static double FloorToFactor(this double value, double factor)
     {
         ThrowIfFactorOutOfRange(factor);
 
         return Math.Floor(value / factor) * factor;
     }
 
-    public static decimal RoundToFactor(this decimal value, decimal factor, MidpointRounding mode = MidpointRounding.AwayFromZero)
+    public static double RoundToFactor(this double value, double factor, MidpointRounding mode = MidpointRounding.AwayFromZero)
     {
         ThrowIfFactorOutOfRange(factor);
 
@@ -29,7 +29,7 @@ public static partial class MathX
         return Math.Round(value / factor, mode) * factor;
     }
 
-    private static void ThrowIfFactorOutOfRange(decimal factor)
+    private static void ThrowIfFactorOutOfRange(double factor)
     {
         if (factor <= 0)
             throw new ArgumentOutOfRangeException(nameof(factor), "Must be > 0.");
