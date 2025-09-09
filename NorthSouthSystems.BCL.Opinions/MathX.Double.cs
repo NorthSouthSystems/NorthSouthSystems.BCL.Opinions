@@ -23,7 +23,7 @@ public static partial class MathX
         if (mode == MidpointRounding.ToEven)
         {
             throw new ArgumentOutOfRangeException(nameof(mode),
-                FormattableString.Invariant($"{nameof(MidpointRounding)}.{MidpointRounding.ToEven} is ambiguous when calling {nameof(RoundToFactor)}."));
+                StringX.Invariant($"{nameof(MidpointRounding)}.{MidpointRounding.ToEven} is ambiguous when calling {nameof(RoundToFactor)}."));
         }
 
         return Math.Round(value / factor, mode) * factor;

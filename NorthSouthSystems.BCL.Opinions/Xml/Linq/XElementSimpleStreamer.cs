@@ -17,11 +17,8 @@ public static class XElementSimpleStreamer
     /// </param>
     public static IEnumerable<XElement> Stream(XmlReader reader, XName elementName)
     {
-        if (reader == null)
-            throw new ArgumentNullException(nameof(reader));
-
-        if (elementName == null)
-            throw new ArgumentNullException(nameof(elementName));
+        ArgumentNullException.ThrowIfNull(reader);
+        ArgumentNullException.ThrowIfNull(elementName);
 
         return StreamIterator(reader, elementName);
     }

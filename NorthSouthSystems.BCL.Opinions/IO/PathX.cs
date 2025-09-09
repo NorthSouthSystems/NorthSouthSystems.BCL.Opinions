@@ -7,8 +7,7 @@ public static class PathX
 {
     public static string GetDirectoryNameOfCallerFilePath([CallerFilePath] string? callerFilePath = null)
     {
-        if (callerFilePath == null)
-            throw new ArgumentNullException(nameof(callerFilePath));
+        ArgumentNullException.ThrowIfNull(callerFilePath);
 
         if (!Path.IsPathRooted(callerFilePath))
             throw new ArgumentOutOfRangeException(nameof(callerFilePath));
@@ -23,8 +22,7 @@ public static class PathX
 
     public static string GetFullPathRelativeToCallerFilePath(string relativePath, [CallerFilePath] string? callerFilePath = null)
     {
-        if (relativePath == null)
-            throw new ArgumentNullException(nameof(relativePath));
+        ArgumentNullException.ThrowIfNull(relativePath);
 
         if (Path.IsPathRooted(relativePath))
             throw new ArgumentOutOfRangeException(nameof(relativePath));
