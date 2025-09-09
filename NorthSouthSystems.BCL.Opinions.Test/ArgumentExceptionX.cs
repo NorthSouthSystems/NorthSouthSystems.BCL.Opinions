@@ -10,6 +10,9 @@ public class ArgumentExceptionXTests
         Action act;
         ArgumentException e;
 
+        act = () => ArgumentExceptionX.ThrowIfAny((IEnumerable<string>)null);
+        act.Should().NotThrow();
+
         act = () => ArgumentExceptionX.ThrowIfAny(Array.Empty<string>());
         act.Should().NotThrow();
 

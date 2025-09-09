@@ -128,4 +128,28 @@ public class MathXTests
         MathX.RoundToFactor(value, factor, mode).Should().Be(expectedValue);
         MathX.RoundToFactor((double)value, (double)factor, mode).Should().Be((double)expectedValue);
     }
+
+    [Fact]
+    public void Exceptions()
+    {
+        Action act;
+
+        act = () => MathX.RoundToFactor(1.1m, 0m);
+        act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which.ParamName.Should().Be("factor");
+
+        act = () => MathX.RoundToFactor(1.1, 0);
+        act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which.ParamName.Should().Be("factor");
+
+        act = () => MathX.RoundToFactor(1.1m, -1m);
+        act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which.ParamName.Should().Be("factor");
+
+        act = () => MathX.RoundToFactor(1.1, -1);
+        act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which.ParamName.Should().Be("factor");
+
+        act = () => MathX.RoundToFactor(3.0m, 2.0m, MidpointRounding.ToEven);
+        act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which.ParamName.Should().Be("mode");
+
+        act = () => MathX.RoundToFactor(3.0, 2.0, MidpointRounding.ToEven);
+        act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which.ParamName.Should().Be("mode");
+    }
 }
