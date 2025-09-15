@@ -4,6 +4,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <!--<PackageVersion Include="" Version="" />-->
+        <PackageVersion Include="CsCheck" Version="4.4.1" />
+        <PackageVersion Include="System.IO.Hashing" Version="9.0.9" />
     </ItemGroup>
 </Project>
