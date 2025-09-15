@@ -3,7 +3,9 @@
     <Sdk Name="NorthSouthSystems.NET.Sdk" Version="7.0.2" />
 
     <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
         <NuGetLockFilePath>packages.lock.json</NuGetLockFilePath>
+        <Description>This .NET library contains opinionated adapters, extensions, and helper classes for the .NET Base Class Library.</Description>
     </PropertyGroup>
 
     <ItemGroup>

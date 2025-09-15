@@ -1,8 +1,3 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <Description>This .NET library contains opinionated adapters, extensions, and helper classes for the .NET Base Class Library.</Description>
-    </PropertyGroup>
-
 </Project>
