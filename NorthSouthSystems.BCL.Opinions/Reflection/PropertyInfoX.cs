@@ -8,17 +8,17 @@ using System.Reflection;
 public static class PropertyInfoX
 {
     private static readonly ConcurrentDictionary<GetterCacheKey, Lazy<Func<object, object>>> _getterCache = new();
-    private sealed record GetterCacheKey(Type ObjType, string PropertyName);
+    private sealed record GetterCacheKey(Type ObjType, string PropertyPath);
 
-    public static object GetValueCompiled(object obj, string propertyName)
+    public static object GetValueCompiled(object obj, string propertyPath)
     {
         ArgumentNullException.ThrowIfNull(obj);
-        ArgumentException.ThrowIfNullOrEmpty(propertyName);
+        ArgumentException.ThrowIfNullOrEmpty(propertyPath);
 
         var objType = obj.GetType();
         ValidateObjType(objType);
 
-        var cacheKey = new GetterCacheKey(objType, propertyName);
+        var cacheKey = new GetterCacheKey(objType, propertyPath);
         var getter = _getterCache.GetOrAdd(cacheKey, ck => new(() => CompileGetter(ck)));
 
         return getter.Value(obj);
@@ -52,17 +52,26 @@ public static class PropertyInfoX
 
     private static Func<object, object> CompileGetter(GetterCacheKey key)
     {
+        var propertyPathSegments = key.PropertyPath.Split(['.'], StringSplitOptions.TrimEntries);
+
         var objParameter = Expression.Parameter(typeof(object));
-        var objParameterTyped = Expression.Convert(objParameter, key.ObjType);
 
-        var getterMethod = GetGetterMethodOrThrow(key.ObjType, key.PropertyName);
-        Expression getterExpression = Expression.Property(objParameterTyped, getterMethod);
+        Expression currentValue = Expression.Convert(objParameter, key.ObjType);
+        var currentValueType = key.ObjType;
 
-        if (getterMethod.ReturnType.IsValueType)
-            getterExpression = Expression.Convert(getterExpression, typeof(object));
+        foreach (string propertyName in propertyPathSegments)
+        {
+            var getter = GetGetterMethodOrThrow(currentValueType, propertyName);
 
-        var getterLambda = Expression.Lambda<Func<object, object>>(getterExpression, objParameter);
+            currentValue = Expression.Property(currentValue, getter);
+            currentValueType = getter.ReturnType;
+        }
 
-        return getterLambda.Compile();
+        if (currentValueType.IsValueType)
+            currentValue = Expression.Convert(currentValue, typeof(object));
+
+        var lambda = Expression.Lambda<Func<object, object>>(currentValue, objParameter);
+
+        return lambda.Compile();
     }
 }
