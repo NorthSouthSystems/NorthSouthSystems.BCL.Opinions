@@ -1,6 +1,4 @@
-﻿namespace NorthSouthSystems;
-
-public class EnumXTests
+﻿public class T_EnumX
 {
     [Fact]
     public void Basic()

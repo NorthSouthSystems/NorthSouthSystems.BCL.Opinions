@@ -1,6 +1,4 @@
-﻿namespace NorthSouthSystems;
-
-public class MathXTests
+﻿public class T_MathX
 {
     [Theory]
     // Zero

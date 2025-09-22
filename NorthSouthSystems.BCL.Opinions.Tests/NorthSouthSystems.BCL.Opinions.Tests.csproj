@@ -8,4 +8,8 @@
         <ProjectReference Include="..\NorthSouthSystems.BCL.Opinions\NorthSouthSystems.BCL.Opinions.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Using Include="NorthSouthSystems" />
+    </ItemGroup>
+
 </Project>

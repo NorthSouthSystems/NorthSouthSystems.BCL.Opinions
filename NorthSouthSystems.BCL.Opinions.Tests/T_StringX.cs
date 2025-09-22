@@ -1,8 +1,6 @@
-﻿namespace NorthSouthSystems;
+﻿using System.Globalization;
 
-using System.Globalization;
-
-public class StringXTests
+public class T_StringX
 {
     [Fact]
     public void CurrentAndInvariant()

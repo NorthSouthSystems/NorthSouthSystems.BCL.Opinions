@@ -1,6 +1,4 @@
-﻿namespace NorthSouthSystems;
-
-public class RandomXTests
+﻿public class T_RandomX
 {
     [Fact]
     public void NextBool()

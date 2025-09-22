@@ -1,6 +1,6 @@
-﻿namespace NorthSouthSystems.Linq;
+﻿using NorthSouthSystems.Linq;
 
-public class ReverseNoBufferExtensionsTests
+public class T_ReverseNoBufferExtensions
 {
     [Fact]
     public void Basic()

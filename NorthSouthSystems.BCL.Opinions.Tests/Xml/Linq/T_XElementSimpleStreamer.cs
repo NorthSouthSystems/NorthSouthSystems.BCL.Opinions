@@ -1,9 +1,8 @@
-﻿namespace NorthSouthSystems.Xml.Linq;
-
+﻿using NorthSouthSystems.Xml.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
-public class XElementSimpleStreamerTests
+public class T_XElementSimpleStreamer
 {
     [Fact]
     public void Basic()

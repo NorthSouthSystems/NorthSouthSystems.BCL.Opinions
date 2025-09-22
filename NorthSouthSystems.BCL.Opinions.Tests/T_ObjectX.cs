@@ -1,6 +1,4 @@
-﻿namespace NorthSouthSystems;
-
-public class ObjectXTests
+﻿public class T_ObjectX
 {
     [Fact]
     public void DeferredNew()

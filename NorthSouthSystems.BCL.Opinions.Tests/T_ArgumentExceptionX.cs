@@ -1,6 +1,4 @@
-﻿namespace NorthSouthSystems;
-
-public class ArgumentExceptionXTests
+﻿public class T_ArgumentExceptionX
 {
     [Fact]
     public void ThrowIfAny()

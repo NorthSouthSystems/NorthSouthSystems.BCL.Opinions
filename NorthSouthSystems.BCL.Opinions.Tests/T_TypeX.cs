@@ -1,6 +1,4 @@
-﻿namespace NorthSouthSystems;
-
-public class TypeXTests
+﻿public class T_TypeX
 {
     [Fact]
     public void IsFloatingPoint()

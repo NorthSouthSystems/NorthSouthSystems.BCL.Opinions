@@ -1,8 +1,7 @@
-﻿namespace NorthSouthSystems.Buffers.Binary;
+﻿using CsCheck;
+using NorthSouthSystems.Buffers.Binary;
 
-using CsCheck;
-
-public class BinaryRoundTripTests
+public class T_BinaryRoundTrip
 {
     [Fact] public void Bool() => TestBase64(Gen.Bool, BinaryRoundTrip.WriteBase64Bool, BinaryRoundTrip.ReadBase64Bool);
     [Fact] public void Byte() => TestBase64(Gen.Byte, BinaryRoundTrip.WriteBase64Byte, BinaryRoundTrip.ReadBase64Byte);

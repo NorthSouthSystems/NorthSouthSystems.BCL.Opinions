@@ -1,9 +1,8 @@
-﻿namespace NorthSouthSystems.IO.Hashing;
-
-using CsCheck;
+﻿using CsCheck;
+using NorthSouthSystems.IO.Hashing;
 using System.IO.Hashing;
 
-public class XxHash128XTests
+public class T_XxHash128X
 {
     [Fact] public void Bool() => Test(Gen.Bool, XxHash128X.Append);
     [Fact] public void Byte() => Test(Gen.Byte, XxHash128X.Append);

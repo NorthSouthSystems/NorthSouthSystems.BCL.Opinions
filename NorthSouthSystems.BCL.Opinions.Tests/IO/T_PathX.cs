@@ -1,8 +1,7 @@
-﻿namespace NorthSouthSystems.IO;
-
+﻿using NorthSouthSystems.IO;
 using System.Runtime.InteropServices;
 
-public class PathXTests
+public class T_PathX
 {
     private static bool IsWindows => RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
