@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthSouthSystems.BCL.Opinions", "NorthSouthSystems.BCL.Opinions\NorthSouthSystems.BCL.Opinions.csproj", "{4021FC1B-C364-4FB1-87F1-0CF974F6016C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthSouthSystems.BCL.Opinions.Test", "NorthSouthSystems.BCL.Opinions.Test\NorthSouthSystems.BCL.Opinions.Test.csproj", "{7B38CB8F-5832-419B-AB67-9E7E1EC52960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthSouthSystems.BCL.Opinions.Tests", "NorthSouthSystems.BCL.Opinions.Tests\NorthSouthSystems.BCL.Opinions.Tests.csproj", "{7B38CB8F-5832-419B-AB67-9E7E1EC52960}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{5A48D816-6DF0-4529-9BBB-E5324365EAB4}"
 	ProjectSection(SolutionItems) = preProject
