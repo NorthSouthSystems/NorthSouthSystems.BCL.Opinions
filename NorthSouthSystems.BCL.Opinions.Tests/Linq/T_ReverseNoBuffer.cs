@@ -13,7 +13,7 @@ public class T_ReverseNoBufferExtensions
         Assert([1, 2, 3]);
         Assert([1, 3, 2]);
 
-        static void Assert<T>(IList<T> source) =>
+        static void Assert<T>(IReadOnlyList<T> source) =>
             source.ReverseNoBuffer().Should().Equal(source.Reverse());
     }
 
@@ -22,7 +22,7 @@ public class T_ReverseNoBufferExtensions
     {
         Action act;
 
-        act = () => ReverseNoBufferExtensions.ReverseNoBuffer((IList<string>)null);
+        act = () => ReverseNoBufferExtensions.ReverseNoBuffer((IReadOnlyList<string>)null);
         act.Should().ThrowExactly<ArgumentNullException>();
     }
 }
