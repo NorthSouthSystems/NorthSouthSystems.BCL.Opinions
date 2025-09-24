@@ -8,20 +8,29 @@ using System.Reflection;
 public static class PropertyInfoX
 {
     private static readonly ConcurrentDictionary<GetterCacheKey, Lazy<Func<object, object>>> _getterCache = new();
-    private sealed record GetterCacheKey(Type ObjType, string PropertyPath, bool IncludeNonPublic);
+    private record struct GetterCacheKey(Type Type, string PropertyPath, bool IncludeNonPublic);
 
     public static object GetValueCompiled(object obj, string propertyPath, bool includeNonPublic = false)
     {
         ArgumentNullException.ThrowIfNull(obj);
+
+        var getter = GetGetterCompiled(obj.GetType(), propertyPath, includeNonPublic);
+
+        return getter(obj);
+    }
+
+    public static Func<object, object> GetGetterCompiled(Type type, string propertyPath, bool includeNonPublic = false)
+    {
+        ArgumentNullException.ThrowIfNull(type);
         ArgumentException.ThrowIfNullOrEmpty(propertyPath);
 
-        var objType = obj.GetType();
-        ValidateObjType(objType);
+        if (type.IsValueType)
+            throw new ArgumentException("Value types are not allowed.", nameof(type));
 
-        var cacheKey = new GetterCacheKey(objType, propertyPath, includeNonPublic);
+        var cacheKey = new GetterCacheKey(type, propertyPath, includeNonPublic);
         var getter = _getterCache.GetOrAdd(cacheKey, ck => new(() => CompileGetter(ck)));
 
-        return getter.Value(obj);
+        return getter.Value;
     }
 
     public static Type GetGetterReturnTypeOrThrow(Type objType, string propertyPath, bool includeNonPublic = false)
@@ -69,20 +78,14 @@ public static class PropertyInfoX
             ?? throw new ArgumentException($"Property '{propertyName}' on {objType} does not have a getter with the requested accessibility.", nameof(propertyName));
     }
 
-    private static void ValidateObjType(Type objType)
-    {
-        if (objType.IsValueType)
-            throw new ArgumentException("Value types are not allowed.", nameof(objType));
-    }
-
     private static Func<object, object> CompileGetter(GetterCacheKey key)
     {
         var propertyPathSegments = SplitPropertyPath(key.PropertyPath);
 
         var objParameter = Expression.Parameter(typeof(object));
 
-        Expression currentValue = Expression.Convert(objParameter, key.ObjType);
-        var currentValueType = key.ObjType;
+        Expression currentValue = Expression.Convert(objParameter, key.Type);
+        var currentValueType = key.Type;
 
         foreach (string propertyName in propertyPathSegments)
         {
