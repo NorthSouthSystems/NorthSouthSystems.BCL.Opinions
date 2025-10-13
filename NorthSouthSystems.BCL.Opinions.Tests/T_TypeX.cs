@@ -1,5 +1,18 @@
-﻿public class T_TypeX
+﻿using System.Collections.Immutable;
+
+public class T_TypeX
 {
+    [Fact]
+    public void Default()
+    {
+        typeof(int).Default().Should().Be(default(int));
+        typeof(DateTime).Default().Should().Be(default(DateTime));
+        typeof(ImmutableArray<int>).Default().Should().Be(default(ImmutableArray<int>));
+
+        typeof(object).Default().Should().Be(default(object));
+        typeof(string).Default().Should().Be(default(string));
+    }
+
     [Fact]
     public void IsFloatingPoint()
     {
