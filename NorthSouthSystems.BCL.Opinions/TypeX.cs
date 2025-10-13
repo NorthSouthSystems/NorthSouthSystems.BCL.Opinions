@@ -2,9 +2,19 @@
 
 using System.Collections.Immutable;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 public static class TypeX
 {
+    public static object? Default(this Type type)
+    {
+        ArgumentNullException.ThrowIfNull(type);
+
+        return type.IsValueType
+            ? RuntimeHelpers.GetUninitializedObject(type)
+            : null;
+    }
+
     // Unfortunately, there is no simpler method to determine this. All Systems.Numerics interfaces
     // are recursive generics (i.e. IInterface<T> where T : IInterface<T>), so they can't be used
     // with "is" or "as" operators on instances or with Type.IsAssignable for Types (without Reflection).
