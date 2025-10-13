@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{5A48D816-6DF0-45
 		Directory.Packages.props = Directory.Packages.props
 		Icon.png = Icon.png
 		LICENSE = LICENSE
+		nuget.config = nuget.config
 		README.md = README.md
 		version.json = version.json
 	EndProjectSection
