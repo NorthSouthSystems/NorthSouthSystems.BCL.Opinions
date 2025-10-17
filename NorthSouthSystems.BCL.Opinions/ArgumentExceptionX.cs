@@ -42,4 +42,20 @@ public static class ArgumentExceptionX
 
         throw new ArgumentException(message.ToString(), originalParamName ?? paramName);
     }
+
+    public static void ThrowIfDefault<T>(T? argument, [CallerArgumentExpression(nameof(argument))] string? paramName = null)
+        where T : struct
+    {
+        if (!argument.HasValue)
+            throw new ArgumentNullException(paramName, "Value cannot be null.");
+
+        ThrowIfDefault(argument.Value, paramName);
+    }
+
+    public static void ThrowIfDefault<T>(T argument, [CallerArgumentExpression(nameof(argument))] string? paramName = null)
+        where T : struct
+    {
+        if (argument.Equals(default(T)))
+            throw new ArgumentException("Value cannot be default.", paramName);
+    }
 }

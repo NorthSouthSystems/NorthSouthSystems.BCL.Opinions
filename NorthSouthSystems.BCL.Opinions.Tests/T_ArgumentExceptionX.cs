@@ -44,4 +44,48 @@
         e.Message.Should().StartWith("The prefix" + nl + "0: foo" + nl + "1: bar (Parameter");
         e.ParamName.Should().Be("theParam");
     }
+
+    [Fact]
+    public void ThrowIfDefault()
+    {
+        Action act;
+        ArgumentException e;
+
+        act = () => ArgumentExceptionX.ThrowIfDefault((int?)1);
+        act.Should().NotThrow();
+
+        act = () => ArgumentExceptionX.ThrowIfDefault(1);
+        act.Should().NotThrow();
+
+        act = () => ArgumentExceptionX.ThrowIfDefault(DateTime.Now);
+        act.Should().NotThrow();
+
+        int? iNullable = null;
+
+        act = () => ArgumentExceptionX.ThrowIfDefault(iNullable);
+        e = act.Should().ThrowExactly<ArgumentNullException>().Which;
+        e.Message.Should().StartWith("Value cannot be null.");
+        e.ParamName.Should().Be(nameof(iNullable));
+
+        iNullable = 0;
+
+        act = () => ArgumentExceptionX.ThrowIfDefault(iNullable);
+        e = act.Should().ThrowExactly<ArgumentException>().Which;
+        e.Message.Should().StartWith("Value cannot be default.");
+        e.ParamName.Should().Be(nameof(iNullable));
+
+        int i = default;
+
+        act = () => ArgumentExceptionX.ThrowIfDefault(i);
+        e = act.Should().ThrowExactly<ArgumentException>().Which;
+        e.Message.Should().StartWith("Value cannot be default.");
+        e.ParamName.Should().Be(nameof(i));
+
+        DateTime dt = default;
+
+        act = () => ArgumentExceptionX.ThrowIfDefault(dt);
+        e = act.Should().ThrowExactly<ArgumentException>().Which;
+        e.Message.Should().StartWith("Value cannot be default.");
+        e.ParamName.Should().Be(nameof(dt));
+    }
 }
