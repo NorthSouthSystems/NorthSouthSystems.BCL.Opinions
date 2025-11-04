@@ -1,5 +1,6 @@
 ﻿namespace NorthSouthSystems;
 
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -43,10 +44,10 @@ public static class ArgumentExceptionX
         throw new ArgumentException(message.ToString(), originalParamName ?? paramName);
     }
 
-    public static void ThrowIfDefault<T>(T? argument, [CallerArgumentExpression(nameof(argument))] string? paramName = null)
+    public static void ThrowIfDefault<T>([NotNull] T? argument, [CallerArgumentExpression(nameof(argument))] string? paramName = null)
         where T : struct
     {
-        if (!argument.HasValue)
+        if (argument is null)
             throw new ArgumentNullException(paramName, "Value cannot be null.");
 
         ThrowIfDefault(argument.Value, paramName);
