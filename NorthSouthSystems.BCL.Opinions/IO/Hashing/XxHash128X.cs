@@ -12,6 +12,7 @@ public static class XxHash128X
     // Encoding.UTF8.GetBytes and MemoryMarshal.AsBytes return no bytes for string.Empty, thereby
     // causing it not to affect the hash. Our method "solves" this potential problem.
 
+#pragma warning disable CA1062 // A NullReferenceException here would be "expected" by the caller.
     public static void Append(this XxHash128 hasher, bool value) => BinaryRoundTrip.WriteBool(value, hasher.Append);
     public static void Append(this XxHash128 hasher, byte value) => BinaryRoundTrip.WriteByte(value, hasher.Append);
     public static void Append(this XxHash128 hasher, sbyte value) => BinaryRoundTrip.WriteSByte(value, hasher.Append);
@@ -23,9 +24,11 @@ public static class XxHash128X
     public static void Append(this XxHash128 hasher, ulong value) => BinaryRoundTrip.WriteULong(value, hasher.Append);
     public static void Append(this XxHash128 hasher, double value) => BinaryRoundTrip.WriteDouble(AppendNormalize(value), hasher.Append);
     public static void Append(this XxHash128 hasher, decimal value) => BinaryRoundTrip.WriteDecimal(value, hasher.Append);
+#pragma warning restore
 
     public static void Append(this XxHash128 hasher, string value)
     {
+        ArgumentNullException.ThrowIfNull(hasher);
         ArgumentNullException.ThrowIfNull(value);
 
         // This line results in 0 bytes for string.Empty, which does not cause the hash to change.
