@@ -1,8 +1,8 @@
-﻿namespace NorthSouthSystems;
-
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+
+namespace NorthSouthSystems;
 
 public static class TypeX
 {

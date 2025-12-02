@@ -1,6 +1,6 @@
-﻿namespace NorthSouthSystems.Collections.Immutable;
+﻿using System.Collections.Immutable;
 
-using System.Collections.Immutable;
+namespace NorthSouthSystems.Collections.Immutable;
 
 public static class ImmutableArrayX
 {

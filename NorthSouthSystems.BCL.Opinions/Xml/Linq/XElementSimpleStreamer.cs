@@ -1,7 +1,7 @@
-﻿namespace NorthSouthSystems.Xml.Linq;
-
-using System.Xml;
+﻿using System.Xml;
 using System.Xml.Linq;
+
+namespace NorthSouthSystems.Xml.Linq;
 
 public static class XElementSimpleStreamer
 {

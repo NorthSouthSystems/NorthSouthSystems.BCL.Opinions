@@ -1,8 +1,8 @@
-﻿namespace NorthSouthSystems.Reflection;
-
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Linq.Expressions;
 using System.Reflection;
+
+namespace NorthSouthSystems.Reflection;
 
 // Adapted and simplified from a ChatGPT conversation on 2025-08-21.
 public static class PropertyInfoX

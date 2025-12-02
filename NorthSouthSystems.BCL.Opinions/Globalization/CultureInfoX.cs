@@ -1,6 +1,6 @@
-﻿namespace NorthSouthSystems.Globalization;
+﻿using System.Globalization;
 
-using System.Globalization;
+namespace NorthSouthSystems.Globalization;
 
 public static class CultureInfoX
 {

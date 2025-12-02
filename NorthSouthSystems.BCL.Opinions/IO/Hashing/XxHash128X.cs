@@ -1,8 +1,8 @@
-﻿namespace NorthSouthSystems.IO.Hashing;
-
-using NorthSouthSystems.Buffers.Binary;
+﻿using NorthSouthSystems.Buffers.Binary;
 using System.IO.Hashing;
 using System.Runtime.InteropServices;
+
+namespace NorthSouthSystems.IO.Hashing;
 
 public static class XxHash128X
 {

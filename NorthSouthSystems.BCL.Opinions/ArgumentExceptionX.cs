@@ -1,9 +1,9 @@
-﻿namespace NorthSouthSystems;
-
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
+
+namespace NorthSouthSystems;
 
 public static class ArgumentExceptionX
 {

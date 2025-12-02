@@ -1,7 +1,7 @@
-﻿namespace NorthSouthSystems.IO;
-
-using System.IO;
+﻿using System.IO;
 using System.Runtime.CompilerServices;
+
+namespace NorthSouthSystems.IO;
 
 public static class PathX
 {

@@ -1,9 +1,8 @@
-﻿namespace NorthSouthSystems.Buffers.Binary;
-
-using System;
-using System.Buffers.Binary;
+﻿using System.Buffers.Binary;
 using System.Diagnostics;
 using System.Text;
+
+namespace NorthSouthSystems.Buffers.Binary;
 
 public static class BinaryRoundTrip
 {
