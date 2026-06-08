@@ -1,8 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <Description>This .NET library contains the ConvertX class for composing pipelines of ITypeConverters capable of converting .NET objects of one Type to any other Type. The default ConvertX conversion pipeline properly handles empty strings and Nullable of T Types for which System.Convert throws Exceptions.</Description>
-    </PropertyGroup>
-
-</Project>
