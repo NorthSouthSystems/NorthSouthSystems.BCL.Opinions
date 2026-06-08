@@ -7,6 +7,11 @@ public interface ITypeConverter
     void Convert(ConvertTypeRequest request);
 }
 
+/// <summary>
+/// ConvertX is used to compose pipelines of ITypeConverters capable of converting .NET objects of one Type to any other
+/// Type. The default ConvertX conversion pipeline properly handles empty strings and Nullable of T Types for which
+/// System.Convert throws Exceptions.
+/// </summary>
 public class ConvertX
 {
     // Construction
