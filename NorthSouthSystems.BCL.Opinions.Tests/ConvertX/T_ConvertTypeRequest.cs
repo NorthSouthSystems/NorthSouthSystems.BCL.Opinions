@@ -28,7 +28,7 @@ public class T_ConvertTypeRequest
         request.Exception(innerException1);
 
         exceptionToThrow = request.ExceptionToThrow();
-        exceptionToThrow.GetType().Should().Be<Exception>();
+        exceptionToThrow.GetType().Should().Be<InvalidCastException>();
         exceptionToThrow.InnerException.Should().Be(innerException1);
 
         var innerException2 = new ApplicationException();

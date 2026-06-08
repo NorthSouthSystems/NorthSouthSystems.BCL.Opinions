@@ -61,13 +61,13 @@ public class T_ConvertX
         string value = "foobar";
 
         act = () => _convertX.ConvertType<int>(value);
-        act.Should().ThrowExactly<Exception>().WithInnerExceptionExactly<FormatException>();
+        act.Should().ThrowExactly<InvalidCastException>().WithInnerExceptionExactly<FormatException>();
 
         act = () => _convertX.ConvertType<int>(value, throwIntermediateExceptions: true);
         act.Should().ThrowExactly<FormatException>();
 
         act = () => _convertX.ConvertType(value, typeof(int));
-        act.Should().ThrowExactly<Exception>().WithInnerExceptionExactly<FormatException>();
+        act.Should().ThrowExactly<InvalidCastException>().WithInnerExceptionExactly<FormatException>();
 
         act = () => _convertX.ConvertType(value, typeof(int), throwIntermediateExceptions: true);
         act.Should().ThrowExactly<FormatException>();

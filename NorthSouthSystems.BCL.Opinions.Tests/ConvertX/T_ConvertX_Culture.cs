@@ -40,10 +40,10 @@ public class T_ConvertX_Culture
             Action act;
 
             act = () => _convertX.ConvertType<int>(value, culture);
-            act.Should().ThrowExactly<Exception>().WithInnerExceptionExactly<FormatException>();
+            act.Should().ThrowExactly<InvalidCastException>().WithInnerExceptionExactly<FormatException>();
 
             act = () => _convertX.ConvertType(value, typeof(int), culture);
-            act.Should().ThrowExactly<Exception>().WithInnerExceptionExactly<FormatException>();
+            act.Should().ThrowExactly<InvalidCastException>().WithInnerExceptionExactly<FormatException>();
 
             int convertedValueInt;
             object convertedValueObject;
