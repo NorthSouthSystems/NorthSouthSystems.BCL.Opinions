@@ -1,15 +1,15 @@
 <Project>
 
-    <Sdk Name="NorthSouthSystems.NET.Sdk" Version="8.0.2" />
+    <Sdk Name="NorthSouthSystems.NET.Sdk" Version="9.0.1"/>
 
     <PropertyGroup>
         <Description>This .NET library contains opinionated adapters, extensions, and helper classes for the .NET Base Class Library.</Description>
     </PropertyGroup>
 
     <ItemGroup>
-        <Using Include="System" />
-        <Using Include="System.Collections.Generic" />
-        <Using Include="System.Linq" />
+        <Using Include="System"/>
+        <Using Include="System.Collections.Generic"/>
+        <Using Include="System.Linq"/>
     </ItemGroup>
 
 </Project>
