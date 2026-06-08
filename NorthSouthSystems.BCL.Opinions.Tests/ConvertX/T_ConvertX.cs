@@ -47,7 +47,7 @@ public class T_ConvertX
         act = () => _convertX.ConvertType(value, typeof(ConvertX));
         act.Should().ThrowExactly<NotSupportedException>();
 
-        _convertX.TryConvertType<ConvertX>(value, out ConvertX convertedValueConvertX).Should().BeFalse();
+        _convertX.TryConvertType<ConvertX>(value, out var convertedValueConvertX).Should().BeFalse();
         convertedValueConvertX.Should().BeNull();
 
         _convertX.TryConvertType(value, typeof(ConvertX), out object convertedValueObject).Should().BeFalse();
@@ -140,18 +140,18 @@ public class T_ConvertX
         convertX.TryConvertType<int>(value, out outInt).Should().BeTrue();
         outInt.Should().Be(0);
 
-        convertX.TryConvertType<int>(value, abortIntermediateExceptions: true, out outInt).Should().BeFalse();
+        convertX.TryConvertType<int>(value, true, out outInt).Should().BeFalse();
         outInt.Should().Be(0);
 
         convertX.TryConvertType(value, typeof(int), out outObject).Should().BeTrue();
         outObject.Should().Be(0);
 
-        convertX.TryConvertType(value, typeof(int), abortIntermediateExceptions: true, out outObject).Should().BeFalse();
+        convertX.TryConvertType(value, typeof(int), true, out outObject).Should().BeFalse();
         outObject.Should().Be(0);
     }
 
     private class AlwaysDefaultConverter : ITypeConverter
     {
-        public void Convert(ConvertTypeRequest request) => request.Converted(request.ConversionType.GetDefaultValue());
+        public void Convert(ConvertTypeRequest request) => request.Converted(request.ConversionType.Default());
     }
 }

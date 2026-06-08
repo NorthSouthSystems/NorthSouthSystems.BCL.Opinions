@@ -1,4 +1,4 @@
-﻿namespace NorthSouthSystems.Conversion;
+﻿namespace NorthSouthSystems;
 
 public class EnumFromUnderlyingTypeConverter : ITypeConverter
 {
@@ -6,7 +6,7 @@ public class EnumFromUnderlyingTypeConverter : ITypeConverter
     {
         ArgumentNullException.ThrowIfNull(request);
 
-        Type conversionType = request.ConversionType.FlattenGenericNullable();
+        var conversionType = request.ConversionType.FlattenGenericNullable();
 
         if (request.Value != null && request.Value.GetType().CanBeEnumUnderlyingType() && conversionType.IsEnum)
             request.Converted(Enum.ToObject(conversionType, request.Value));

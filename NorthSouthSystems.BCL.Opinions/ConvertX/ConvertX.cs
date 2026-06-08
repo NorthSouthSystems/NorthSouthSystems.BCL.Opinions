@@ -1,6 +1,6 @@
-﻿namespace NorthSouthSystems.Conversion;
+﻿using System.Globalization;
 
-using System.Globalization;
+namespace NorthSouthSystems;
 
 public interface ITypeConverter
 {
@@ -68,15 +68,15 @@ public class ConvertX
     // TryConvertType Generic
 
     public bool TryConvertType<TConversionType>(object? value,
-            out TConversionType? convertedValue) =>
+        out TConversionType? convertedValue) =>
         TryConvertType(value, null, false, out convertedValue);
 
     public bool TryConvertType<TConversionType>(object? value,
-            IFormatProvider? provider, out TConversionType? convertedValue) =>
+        IFormatProvider? provider, out TConversionType? convertedValue) =>
         TryConvertType(value, provider, false, out convertedValue);
 
     public bool TryConvertType<TConversionType>(object? value,
-            bool abortIntermediateExceptions, out TConversionType? convertedValue) =>
+        bool abortIntermediateExceptions, out TConversionType? convertedValue) =>
         TryConvertType(value, null, abortIntermediateExceptions, out convertedValue);
 
     public bool TryConvertType<TConversionType>(object? value,
@@ -92,15 +92,15 @@ public class ConvertX
     // TryConvertType Object
 
     public bool TryConvertType(object? value, Type conversionType,
-            out object? convertedValue) =>
+        out object? convertedValue) =>
         TryConvertType(value, conversionType, null, false, out convertedValue);
 
     public bool TryConvertType(object? value, Type conversionType,
-            IFormatProvider? provider, out object? convertedValue) =>
+        IFormatProvider? provider, out object? convertedValue) =>
         TryConvertType(value, conversionType, provider, false, out convertedValue);
 
     public bool TryConvertType(object? value, Type conversionType,
-            bool abortIntermediateExceptions, out object? convertedValue) =>
+        bool abortIntermediateExceptions, out object? convertedValue) =>
         TryConvertType(value, conversionType, null, abortIntermediateExceptions, out convertedValue);
 
     public bool TryConvertType(object? value, Type conversionType,
@@ -110,7 +110,7 @@ public class ConvertX
 
         // We want to have complete parity with TryConvertType<TConversionType>, so whenever conversion didn't occur,
         // we use our extension method to "default" convertedValue instead of simply always setting null.
-        convertedValue = request.IsConverted ? request.ConvertedValue : conversionType.GetDefaultValue();
+        convertedValue = request.IsConverted ? request.ConvertedValue : conversionType.Default();
 
         return request.IsConverted;
     }

@@ -1,6 +1,6 @@
-﻿namespace NorthSouthSystems.Conversion;
+﻿using System.Globalization;
 
-using System.Globalization;
+namespace NorthSouthSystems;
 
 public class ConvertTypeRequest
 {
@@ -44,7 +44,7 @@ public class ConvertTypeRequest
         if (_exceptions == null)
             return new NotSupportedException(message);
         else if (_exceptions.Count == 1)
-            return new Exception(message, _exceptions.Single());
+            return new InvalidCastException(message, _exceptions.Single());
         else
             return new AggregateException(message, _exceptions);
     }

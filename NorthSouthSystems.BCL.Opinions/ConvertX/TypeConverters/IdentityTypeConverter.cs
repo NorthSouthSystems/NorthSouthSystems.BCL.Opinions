@@ -1,4 +1,4 @@
-﻿namespace NorthSouthSystems.Conversion;
+﻿namespace NorthSouthSystems;
 
 public class IdentityTypeConverter : ITypeConverter
 {
