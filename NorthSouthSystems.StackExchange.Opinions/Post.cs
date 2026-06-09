@@ -19,7 +19,10 @@ public partial class Post
         ViewCount = ((int?)xe.Attribute(nameof(ViewCount))).GetValueOrDefault();
         OwnerUserId = ((int?)xe.Attribute(nameof(OwnerUserId))).GetValueOrDefault(-1);
         Title = (string)xe.Attribute(nameof(Title));
-        Tags = ((string)xe.Attribute(nameof(Tags)) ?? string.Empty).TrimStart('<').TrimEnd('>').Split(new[] { "><" }, StringSplitOptions.RemoveEmptyEntries);
+        Tags = ((string)xe.Attribute(nameof(Tags)) ?? string.Empty)
+            .TrimStart('<')
+            .TrimEnd('>')
+            .Split("><", StringSplitOptions.RemoveEmptyEntries);
         AnswerCount = ((int?)xe.Attribute(nameof(AnswerCount))).GetValueOrDefault();
         CommentCount = ((int?)xe.Attribute(nameof(CommentCount))).GetValueOrDefault();
         FavoriteCount = ((int?)xe.Attribute(nameof(FavoriteCount))).GetValueOrDefault();

@@ -1,8 +1,9 @@
-﻿namespace NorthSouthSystems.StackExchange;
-
-using NorthSouthSystems.IO;
+﻿using NorthSouthSystems.IO;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
+
+namespace NorthSouthSystems.StackExchange;
 
 // Adapted from: https://stackoverflow.com/questions/7994477/extract-7zip-in-c-sharp-code
 //               https://stackoverflow.com/a/25786871
@@ -15,7 +16,7 @@ internal static class SevenZipConsole
         if (!File.Exists(sevenZipExeFilename))
             sevenZipExeFilename = PathX.GetFullPathRelativeToCallerFilePath(@"Binaries\7za.exe");
 
-        var processStartInfo = new ProcessStartInfo()
+        var processStartInfo = new ProcessStartInfo
         {
             FileName = sevenZipExeFilename,
 
@@ -31,11 +32,11 @@ internal static class SevenZipConsole
         using var process = Process.Start(processStartInfo);
 
         if (process == null)
-            throw new Exception("Unable to start process.");
+            throw new UnreachableException("Unable to start process.");
 
         process.WaitForExit();
 
         if (process.ExitCode != 0)
-            throw new Exception(process.ExitCode.ToString());
+            throw new UnreachableException(process.ExitCode.ToString(CultureInfo.InvariantCulture));
     }
 }

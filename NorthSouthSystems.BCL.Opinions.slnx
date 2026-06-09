@@ -14,4 +14,6 @@
   <Project Path="NorthSouthSystems.BCL.Opinions.Benchmarks/NorthSouthSystems.BCL.Opinions.Benchmarks.csproj" />
   <Project Path="NorthSouthSystems.BCL.Opinions.Tests/NorthSouthSystems.BCL.Opinions.Tests.csproj" />
   <Project Path="NorthSouthSystems.BCL.Opinions/NorthSouthSystems.BCL.Opinions.csproj" />
+  <Project Path="NorthSouthSystems.StackExchange.Opinions.Tests/NorthSouthSystems.StackExchange.Opinions.Tests.csproj" />
+  <Project Path="NorthSouthSystems.StackExchange.Opinions/NorthSouthSystems.StackExchange.Opinions.csproj" />
 </Solution>

@@ -1,13 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <NoWarn>NU5100</NoWarn>
+        <!-- TODO: CS1573 - Fully document all params for documented methods. -->
+        <!-- TODO: CS1591 - Fully document all publicly visible members. -->
+        <NoWarn>CS1573,CS1591</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="NorthSouthSystems.BCL.Opinions" />
-        <PackageReference Include="MemoryPack" />
-        <PackageReference Include="morelinq" />
+        <ProjectReference Include="..\NorthSouthSystems.BCL.Opinions\NorthSouthSystems.BCL.Opinions.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MemoryPack"/>
+        <PackageReference Include="morelinq"/>
     </ItemGroup>
 
     <ItemGroup>
