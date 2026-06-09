@@ -3,7 +3,8 @@
     <PropertyGroup>
         <!-- TODO: CS1573 - Fully document all params for documented methods. -->
         <!-- TODO: CS1591 - Fully document all publicly visible members. -->
-        <NoWarn>CS1573,CS1591</NoWarn>
+        <!-- NU5100: The assembly 'contentFiles/any/net10.0/SevenZip/Binaries/7zxa.dll' is not inside the 'lib' folder and hence it won't be added as a reference when the package is installed into a project. Move it into the 'lib' folder if it needs to be referenced. -->
+        <NoWarn>CS1573,CS1591,NU5100</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="SevenZip\Binaries\*">
+        <Content Include="SevenZip/Binaries/*">
             <PackageCopyToOutput>true</PackageCopyToOutput>
             <PackageFlatten>true</PackageFlatten>
         </Content>
