@@ -5,7 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageVersion Include="CsCheck" Version="4.4.1" />
-        <PackageVersion Include="System.IO.Hashing" Version="10.0.0" />
+        <PackageVersion Include="CsCheck" Version="4.4.1"/>
+        <PackageVersion Include="MemoryPack" Version="1.21.4"/>
+        <PackageVersion Include="morelinq" Version="4.4.0"/>
+        <PackageVersion Include="System.IO.Hashing" Version="10.0.0"/>
     </ItemGroup>
 </Project>
