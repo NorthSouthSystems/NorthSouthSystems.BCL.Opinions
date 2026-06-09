@@ -185,17 +185,17 @@
           "xunit.v3.runner.common": "[3.2.2]"
         }
       },
-      "northsouthsystems.bcl.opinions": {
+      "northsouthsystems.opinions.bcl": {
         "type": "Project",
         "dependencies": {
           "System.IO.Hashing": "[10.0.0, )"
         }
       },
-      "northsouthsystems.stackexchange.opinions": {
+      "northsouthsystems.opinions.stackexchange": {
         "type": "Project",
         "dependencies": {
           "MemoryPack": "[1.21.4, )",
-          "NorthSouthSystems.BCL.Opinions": "[1.0.0, )",
+          "NorthSouthSystems.Opinions.BCL": "[1.0.0, )",
           "morelinq": "[4.4.0, )"
         }
       },

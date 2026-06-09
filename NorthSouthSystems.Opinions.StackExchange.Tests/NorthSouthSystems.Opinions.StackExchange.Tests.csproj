@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+        <ProjectReference Include="..\NorthSouthSystems.Opinions.StackExchange\NorthSouthSystems.Opinions.StackExchange.csproj" />
+    </ItemGroup>
+
+</Project>

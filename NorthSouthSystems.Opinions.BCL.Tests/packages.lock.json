@@ -181,7 +181,7 @@
           "xunit.v3.runner.common": "[3.2.2]"
         }
       },
-      "northsouthsystems.bcl.opinions": {
+      "northsouthsystems.opinions.bcl": {
         "type": "Project",
         "dependencies": {
           "System.IO.Hashing": "[10.0.0, )"

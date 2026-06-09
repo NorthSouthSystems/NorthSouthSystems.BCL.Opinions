@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\NorthSouthSystems.BCL.Opinions\NorthSouthSystems.BCL.Opinions.csproj"/>
+        <ProjectReference Include="..\NorthSouthSystems.Opinions.BCL\NorthSouthSystems.Opinions.BCL.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
